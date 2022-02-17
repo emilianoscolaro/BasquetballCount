@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="XamF.CustomControlls.CustomDialogs.Dialogs.Base.DialogBase"
+                 x:Name="dialogBasePage">
+    <ContentPage.Content>
+        <Frame HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" 
+                     MinimumWidthRequest="500" BackgroundColor="{DynamicResource PrimaryColor}" CornerRadius="10" Padding="0">
+            <StackLayout Spacing="0">
+                <StackLayout x:Name="lytTitle" VerticalOptions="Center"  HorizontalOptions="FillAndExpand">
+                    <Label x:Name="lblTitle" TextColor="{DynamicResource PopUpTitleTextColor}" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                    <BoxView BackgroundColor="{DynamicResource PrimaryTextColor}" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="30,0"/>
+                </StackLayout>
+                <StackLayout VerticalOptions="StartAndExpand" Padding="0">
+                    <Label x:Name="lblMessage" VerticalOptions="StartAndExpand"  HorizontalOptions="Start" HorizontalTextAlignment="Start" TextColor="{DynamicResource PrimaryTextColor}" FontSize="Small"
+                           Margin="40,10,40,40" WidthRequest="400"/>
+                </StackLayout>
+                <ContentView Content="{Binding Source={x:Reference dialogBasePage}, Path=ActionsPlaceHolder}" Padding="10" />
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</popup:PopupPage>
