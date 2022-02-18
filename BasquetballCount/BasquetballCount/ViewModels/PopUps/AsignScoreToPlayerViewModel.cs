@@ -31,6 +31,7 @@ namespace BasquetballCount.ViewModels.PopUps
         {
             AddScoreToPlayer(player, Points);
             Navigation.PopAllPopupAsync();
+            //await PopupNavigation.Instance.PopAsync();
         }
         void AddScoreToPlayer(Player intplayer, int points)
         {
