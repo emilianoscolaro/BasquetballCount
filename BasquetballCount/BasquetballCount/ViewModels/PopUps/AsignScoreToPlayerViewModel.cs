@@ -9,6 +9,9 @@ using System.Runtime.CompilerServices;
 using Rg.Plugins.Popup.Extensions;
 using System.Linq;
 using Xamarin.Forms.Internals;
+using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
 
 namespace BasquetballCount.ViewModels.PopUps
 {
@@ -32,11 +35,35 @@ namespace BasquetballCount.ViewModels.PopUps
             AddScoreToPlayer(player, Points);
             Navigation.PopAllPopupAsync();
         }
-        void AddScoreToPlayer(Player intplayer, int points)
+        async void AddScoreToPlayer(Player intplayer, int points)
         {
             Players.Where(x => x.Name == intplayer.Name).ForEach(player => { player.Points = player.Points + points; });
+            await PlayScoreSound(intplayer.Name);
             MessagingCenter.Send(this, "AddScore", Players);
         }
-
+        async Task PlayScoreSound(string playerName)
+        {
+            await Task.Run(() => {
+                var assembly = typeof(App).GetTypeInfo().Assembly;
+                var audio = GetPlayerAudio(playerName);
+                if (string.IsNullOrEmpty(audio))
+                    return;
+                Stream audioStream = assembly.GetManifestResourceStream($"BasquetballCount.Resources.Audios.{audio}");
+                var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load(audioStream);
+                player.Play();
+            });
+        }
+        string GetPlayerAudio(string playerName)
+        {
+            switch (playerName)
+            {
+                case "Maty":
+                    return "seagull-sound.mp3";
+                case "Rashid":
+                    return "harry_maguire.mp3";
+            }
+            return "";
+        }
     }
 }

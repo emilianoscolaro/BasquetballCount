@@ -128,7 +128,7 @@ namespace BasquetballCount.ViewModels
         void RegisterMessages()
         {
             UrRegisterMessages();
-            MessagingCenter.Instance.Subscribe<AsignScoreToPlayerViewModel, ObservableCollection<Player>>(this, "AddScore", async (sender, players) => {
+            MessagingCenter.Instance.Subscribe<AsignScoreToPlayerViewModel, ObservableCollection<Player>>(this, "AddScore", (sender, players) => {
                  if(players.FirstOrDefault().Team.Name == HomeTeam.Name)
                 {
                     HomePlayers = players;
@@ -196,6 +196,7 @@ namespace BasquetballCount.ViewModels
             players.Add(new Player { Name = "Dani", Number = 23 });
             players.Add(new Player { Name = "Maty", Number = 4 });
             players.Add(new Player { Name = "Jr.", Number = 9 });
+            players.Add(new Player { Name = "Rami", Number = 5 });
 
             foreach (var player in players)
             {
@@ -263,7 +264,7 @@ namespace BasquetballCount.ViewModels
         {
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
              {
-                 GameTimeMinutes = GameTime.Elapsed.Minutes.ToString("00");
+                 GameTimeMinutes = GameTime.Elapsed.Minutes.ToString("000");
                  GameTimeSeconds = GameTime.Elapsed.Seconds.ToString("00");
                  return true;
              });
