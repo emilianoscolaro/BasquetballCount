@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SQLite;
 
 namespace BasquetballCount.Models
 {
     public class Team
     {
-        public string Name { get; set; }
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

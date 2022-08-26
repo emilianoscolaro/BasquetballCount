@@ -13,12 +13,12 @@ using Xamarin.Forms.Internals;
 using BasquetballCount.Views.PopUps;
 using Rg.Plugins.Popup.Extensions;
 using BasquetballCount.ViewModels.PopUps;
+using BasquetballCount.ViewModels.BaseViewModels;
 
 namespace BasquetballCount.ViewModels
 {
-    public class CountPageViewModel : INotifyPropertyChanged
+    public class CountPageViewModel : BaseViewModel
     {
-        INavigation Navigation = null;
 
         Timer Time;
 
@@ -128,8 +128,9 @@ namespace BasquetballCount.ViewModels
         void RegisterMessages()
         {
             UrRegisterMessages();
-            MessagingCenter.Instance.Subscribe<AsignScoreToPlayerViewModel, ObservableCollection<Player>>(this, "AddScore", (sender, players) => {
-                 if(players.FirstOrDefault().Team.Name == HomeTeam.Name)
+            MessagingCenter.Instance.Subscribe<AsignScoreToPlayerViewModel, ObservableCollection<Player>>(this, "AddScore", (sender, players) =>
+            {
+                if (players.FirstOrDefault().TeamId== HomeTeam.Id)
                 {
                     HomePlayers = players;
                     HomePlayers = new ObservableCollection<Player>(HomePlayers.OrderByDescending(i => i.Points));
@@ -182,7 +183,7 @@ namespace BasquetballCount.ViewModels
 
             foreach (var player in players)
             {
-                player.Team = HomeTeam;
+                player.TeamId = HomeTeam.Id;
             }
 
             return players;
@@ -200,7 +201,7 @@ namespace BasquetballCount.ViewModels
 
             foreach (var player in players)
             {
-                player.Team = VisitTeam;
+                player.TeamId = VisitTeam.Id;
             }
 
             return players;
@@ -269,15 +270,5 @@ namespace BasquetballCount.ViewModels
                  return true;
              });
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string NombrePropiedad = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(NombrePropiedad));
-            }
-        }
-
     }
 }

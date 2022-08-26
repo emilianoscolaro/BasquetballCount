@@ -1,0 +1,32 @@
+// Model And Repository
+#region Properties & constructors
+#endregion
+
+#region Methods
+#endregion
+
+// Services
+#region Properties & constructors
+#endregion
+
+#region Service cases
+#endregion
+
+#region Methods
+#endregion
+
+// Viewmodel
+#region Properties & Constructors
+#endregion
+
+#region LifeCycle Events
+#endregion
+
+#region Commands & Bindings
+#endregion
+
+#region Command Executions
+#endregion
+
+#region Methods
+#endregion	
