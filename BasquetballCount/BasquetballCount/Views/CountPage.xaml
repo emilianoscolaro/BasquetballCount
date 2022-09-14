@@ -85,7 +85,7 @@
                 <Frame  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" Padding="20" BackgroundColor="WhiteSmoke" Opacity=".9">
                     <StackLayout Spacing="20">
                         <StackLayout VerticalOptions="CenterAndExpand">
-                            <Label Text="{Binding VisitTeam.Name}" Style="{DynamicResource Key=TitleLabel}"/>
+                            <Label Text="{Binding AwayTeam.Name}" Style="{DynamicResource Key=TitleLabel}"/>
                             <BoxView BackgroundColor="PaleVioletRed" HeightRequest="1"/>
                             <CollectionView ItemsSource="{Binding AwayPlayers}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,5,0,0">
                                 <CollectionView.ItemTemplate>
@@ -197,10 +197,10 @@
                                 <ColumnDefinition Width="1*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding VisitTeam.Name}" Style="{DynamicResource Key=TitleLabel}" FontSize="20"/>
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding AwayTeam.Name}" Style="{DynamicResource Key=TitleLabel}" FontSize="20"/>
                             <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="Transparent" BorderColor="Black">
                                 <StackLayout>
-                                    <Label Text="{Binding VisiteamScore}" Style="{DynamicResource Key=ScoreNumbers}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label Text="{Binding AwayTeamScore}" Style="{DynamicResource Key=ScoreNumbers}" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 </StackLayout>
                             </Frame>
 

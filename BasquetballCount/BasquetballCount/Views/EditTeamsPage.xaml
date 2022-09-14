@@ -5,15 +5,16 @@
     <ContentPage.Content>
         <StackLayout Padding="20">
             <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding NewTeamName}" Placeholder="-Enter team Name-" VerticalOptions="FillAndExpand"/>
-                <Button Text="Create team" Command="{Binding AddTeamCommand}"/>
+                <Entry Text="{Binding NewTeamName}" Placeholder="-Enter team Name-" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                <Button Text="Create team" Command="{Binding AddTeamCommand}" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
             <CollectionView x:Name="TeamList" ItemsSource="{Binding TeamsList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal" Padding="10">
                             <Label Text="{Binding Name}" VerticalOptions="CenterAndExpand"/>
-                            <Button Text="Delete" HorizontalOptions="EndAndExpand" Command="{Binding Path=BindingContext.DeleteTeamCommand , Source={x:Reference TeamList}}" CommandParameter="{Binding Path=.}" />
+                            <Button Text="Delete" HorizontalOptions="EndAndExpand" Command="{Binding Path=BindingContext.DeleteTeamCommand , Source={x:Reference TeamList}}" CommandParameter="{Binding Path=.}" 
+                                    BackgroundColor="Red" TextColor="White" CornerRadius="10" HeightRequest="40"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path=BindingContext.TeamSelectedCommand , Source={x:Reference TeamList}}" CommandParameter="{Binding Path=.}" />
                             </StackLayout.GestureRecognizers>
@@ -23,12 +24,14 @@
             </CollectionView>
             <Label Text="Players" HorizontalOptions="CenterAndExpand" TextColor="CornflowerBlue"/>
             <BoxView BackgroundColor="Gray" HorizontalOptions="FillAndExpand" HeightRequest="3"/>
-            <CollectionView ItemsSource="{Binding PlayersList}">
+            <CollectionView x:Name="PlayersList" ItemsSource="{Binding PlayersList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal" Padding="10">
-                            <Label Text="{Binding Name}" VerticalOptions="CenterAndExpand"/>
-                            <Label Text="{Binding Number}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                            <Label Text="{Binding Number}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" WidthRequest="30"/>
+                            <Label Text="{Binding Name}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
+                            <Button Text="Delete" HorizontalOptions="EndAndExpand" Command="{Binding Path=BindingContext.DeletePlayerCommand , Source={x:Reference PlayersList}}" CommandParameter="{Binding Path=.}" 
+                                    BackgroundColor="Red" TextColor="White" CornerRadius="10" HeightRequest="40"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

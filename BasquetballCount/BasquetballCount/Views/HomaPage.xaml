@@ -3,9 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BasquetballCount.Views.HomaPage">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Spacing="20">
-            <Button Text="Go to match" Command="{Binding GoToCountPageCommand}"/>
-            <Button Text="Edit Teams" Command="{Binding GoToEditTeamsCommand}"/>
+        <StackLayout>
+            <StackLayout x:Name="SelectTeamsStack" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20" Spacing="20">
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <Label Text="{Binding SelectedHomeTeam.Name}" HorizontalOptions="CenterAndExpand"/>
+                        <Picker ItemsSource="{Binding HomeTeams}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedHomeTeam}" 
+                                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <Label Text="{Binding SelectedHomeTeam.Name}" HorizontalOptions="CenterAndExpand"/>
+                        <Picker ItemsSource="{Binding AwayTeams}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedAwayTeam}" 
+                                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout x:Name="ButtomsStack" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Spacing="20">
+                <Button Text="Edit Teams" Command="{Binding GoToEditTeamsCommand}"/>
+                <Button Text="Start match" Command="{Binding GoToCountPageCommand}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -34,6 +34,7 @@ namespace BasquetballCount.ViewModels
         public Command<Team> TeamSelectedCommand { get; set; }
         public Command AddPlayerCommand { get; set; }
         public Command<Team> DeleteTeamCommand { get; set; }
+        public Command<Player> DeletePlayerCommand { get; set; }
         public ObservableCollection<Team> TeamsList
         {
             get { return _teamsList; }
@@ -74,7 +75,14 @@ namespace BasquetballCount.ViewModels
         }
         async void AddPlayer()
         {
+            if(SelectemTeam == null)
+            {
+                return;
+            }
             await DataBase.Instance.SavePlayerAsync(new Player { Name = NewPlayerName, Number = NewPlyerNumber, TeamId = SelectemTeam.Id });
+            NewPlayerName = string.Empty;
+            NewPlyerNumber = 0;
+            OnTeamSelected(SelectemTeam);
         }
         async void OnTeamSelected(Team team)
         {
@@ -86,6 +94,11 @@ namespace BasquetballCount.ViewModels
             await DataBase.Instance.DeleteTeam(team);
             FillTeamsList();
         }
+        async void DeletePlayer(Player player)
+        {
+            await DataBase.Instance.DeletePlayer(player);
+            PlayersList.Remove(player);
+        }
         #endregion
 
         #region Methods
@@ -95,6 +108,7 @@ namespace BasquetballCount.ViewModels
             TeamSelectedCommand = new Command<Team>(OnTeamSelected);
             AddPlayerCommand = new Command(AddPlayer);
             DeleteTeamCommand = new Command<Team>(DeleteTeam);
+            DeletePlayerCommand = new Command<Player>(DeletePlayer);
         }
         async void FillTeamsList()
         {

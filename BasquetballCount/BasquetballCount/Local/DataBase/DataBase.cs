@@ -32,9 +32,21 @@ namespace BasquetballCount.Local.DataBase
             _dataBase.CreateTableAsync<Player>();
         }
 
-
+        #region Team
         public Task<List<Team>> GetTeamsAsync() => _dataBase.Table<Team>().ToListAsync();
         public Task<int> SaveTeamAsync(Team team)
+        {
+            return _dataBase.InsertAsync(team);
+        }
+        public Task<int> DeleteTeam(Team team)
+        {
+            return _dataBase.DeleteAsync(team);
+        }
+        #endregion
+
+        #region Player
+        public Task<List<Player>> GetPlayersAsync() => _dataBase.Table<Player>().ToListAsync();
+        public Task<int> SavePlayerAsync(Player team)
         {
             return _dataBase.InsertAsync(team);
         }
@@ -42,16 +54,10 @@ namespace BasquetballCount.Local.DataBase
         {
             return _dataBase.Table<Player>().Where(x => x.TeamId == teamId).ToListAsync();
         }
-        public Task<int> DeleteTeam(Team team)
+        public Task<int> DeletePlayer(Player player)
         {
-            return _dataBase.DeleteAsync(team);
+            return _dataBase.DeleteAsync(player);
         }
-
-
-        public Task<List<Player>> GetPlayersAsync() => _dataBase.Table<Player>().ToListAsync();
-        public Task<int> SavePlayerAsync(Player team)
-        {
-            return _dataBase.InsertAsync(team);
-        }
+        #endregion
     }
 }
