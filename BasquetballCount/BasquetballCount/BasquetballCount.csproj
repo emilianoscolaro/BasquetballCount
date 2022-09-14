@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Audios\harry_maguire.mp3" />
+    <None Remove="Resources\Audios\seagull-sound.mp3" />
     <None Remove="Resources\Images\alarm_black.svg" />
     <None Remove="Resources\Images\pause_black.svg" />
     <None Remove="Resources\Images\play_arrow_black.svg" />
@@ -18,6 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Audios\harry_maguire.mp3" />
+    <EmbeddedResource Include="Resources\Audios\seagull-sound.mp3" />
     <EmbeddedResource Include="Resources\Images\alarm_black.svg" />
     <EmbeddedResource Include="Resources\Images\pause_black.svg" />
     <EmbeddedResource Include="Resources\Images\play_arrow_black.svg" />
@@ -27,6 +31,8 @@
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.6.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
@@ -42,8 +48,18 @@
     <EmbeddedResource Update="Views\CountPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\EditTeamsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HomaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\PopUps\AsignScoreToPlayerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\BaseView\" />
   </ItemGroup>
 </Project>

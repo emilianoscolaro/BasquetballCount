@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasquetballCount.Models;
 using BasquetballCount.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,10 +13,10 @@ namespace BasquetballCount.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CountPage : ContentPage
     {
-        public CountPage()
+        public CountPage(Team homeTeam, Team awayTeam)
         {
             InitializeComponent();
-            BindingContext = new CountPageViewModel(Navigation);
+            BindingContext = new CountPageViewModel(Navigation, homeTeam, awayTeam);
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

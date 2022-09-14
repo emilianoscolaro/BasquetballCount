@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BasquetballCount.Views.EditTeamsPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding NewTeamName}" Placeholder="-Enter team Name-" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                <Button Text="Create team" Command="{Binding AddTeamCommand}" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+            <CollectionView x:Name="TeamList" ItemsSource="{Binding TeamsList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label Text="{Binding Name}" VerticalOptions="CenterAndExpand"/>
+                            <Button Text="Delete" HorizontalOptions="EndAndExpand" Command="{Binding Path=BindingContext.DeleteTeamCommand , Source={x:Reference TeamList}}" CommandParameter="{Binding Path=.}" 
+                                    BackgroundColor="Red" TextColor="White" CornerRadius="10" HeightRequest="40"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.TeamSelectedCommand , Source={x:Reference TeamList}}" CommandParameter="{Binding Path=.}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label Text="Players" HorizontalOptions="CenterAndExpand" TextColor="CornflowerBlue"/>
+            <BoxView BackgroundColor="Gray" HorizontalOptions="FillAndExpand" HeightRequest="3"/>
+            <CollectionView x:Name="PlayersList" ItemsSource="{Binding PlayersList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label Text="{Binding Number}" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" WidthRequest="30"/>
+                            <Label Text="{Binding Name}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
+                            <Button Text="Delete" HorizontalOptions="EndAndExpand" Command="{Binding Path=BindingContext.DeletePlayerCommand , Source={x:Reference PlayersList}}" CommandParameter="{Binding Path=.}" 
+                                    BackgroundColor="Red" TextColor="White" CornerRadius="10" HeightRequest="40"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label Text="Add Players" HorizontalOptions="CenterAndExpand" TextColor="CornflowerBlue"/>
+            <BoxView BackgroundColor="Gray" HorizontalOptions="FillAndExpand" HeightRequest="3"/>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Entry Text="{Binding NewPlayerName}" Placeholder="-Name-" HorizontalOptions="FillAndExpand"/>
+                    <Entry Text="{Binding NewPlyerNumber}" Placeholder="-Number-" HorizontalOptions="FillAndExpand" Keyboard="Numeric"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Picker ItemsSource="{Binding TeamsList}" SelectedItem="{Binding SelectemTeam}" HorizontalOptions="FillAndExpand" ItemDisplayBinding="{Binding Name}" Title="-Select team-"/>
+                    <Button Text="Add player" Command="{Binding AddPlayerCommand}" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

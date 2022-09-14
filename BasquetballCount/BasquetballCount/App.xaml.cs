@@ -11,7 +11,7 @@ namespace BasquetballCount
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new CountPage());
+            MainPage = new NavigationPage(new HomaPage());
         }
 
         protected override void OnStart()
