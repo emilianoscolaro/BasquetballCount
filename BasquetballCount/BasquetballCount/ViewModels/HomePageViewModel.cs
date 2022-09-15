@@ -18,6 +18,7 @@ namespace BasquetballCount.ViewModels
         private List<Team> _homeTeams;
         private List<Team> _awayTeams;
 
+
         public HomePageViewModel(INavigation navigation)
         {
             Navigation = navigation;
